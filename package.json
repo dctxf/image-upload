@@ -1,0 +1,29 @@
+{
+  "name": "image-upload",
+  "version": "1.0.0",
+  "description": "图片上传",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dctxf/image-upload.git"
+  },
+  "keywords": [
+    "image",
+    "upload",
+    "node",
+    "javascript",
+    "api"
+  ],
+  "author": "dctxf",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dctxf/image-upload/issues"
+  },
+  "homepage": "https://github.com/dctxf/image-upload#readme",
+  "dependencies": {
+    "formidable": "^1.1.1"
+  }
+}
