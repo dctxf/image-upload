@@ -1,11 +1,26 @@
-var formidable = require('formidable'),
+const formidable = require('formidable'),
   http = require('http'),
-  util = require('util');
+  util = require('util'),
+  fs = require('fs'),
+  UPLOAD = {
+    DIR: './upload/',
+    PORT: 5678
+  };
+// 异步读取
+fs.readdir(UPLOAD.DIR, function(err, files) {
+  if (!files) {
+    fs.mkdir(UPLOAD.DIR, function(err) {
+      if (!err) {
+
+      }
+    });
+  }
+});
 http.createServer(function(req, res) {
   if (req.url == '/upload' && req.method.toLowerCase() == 'post') {
     // parse a file upload
     var form = new formidable.IncomingForm();
-    form.uploadDir = "./upload";
+    form.uploadDir = UPLOAD.DIR;
 
     form.parse(req, function(err, fields, files) {
       res.writeHead(200, { 'content-type': 'text/plain' });
@@ -25,4 +40,4 @@ http.createServer(function(req, res) {
     '<input type="submit" value="Upload">' +
     '</form>'
   );
-}).listen(8080);
+}).listen(UPLOAD.PORT);
