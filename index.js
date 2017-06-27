@@ -23,11 +23,20 @@ http.createServer(function(req, res) {
     form.uploadDir = UPLOAD.DIR;
 
     form.parse(req, function(err, fields, files) {
+      var data;
       res.writeHead(200, { 'content-type': 'text/plain' });
       res.writeHead(200, { "Access-Control-Allow-Origin": "*" });
       // res.write('received upload:\n\n');
-      console.log(files.upload.File);
-      res.end();
+      console.log(files.upload);
+      data = {
+        size: files.upload.size,
+        path: files.upload.path,
+        name: files.upload.name,
+        type: files.upload.type,
+        hash: files.upload.hash,
+        lastModifiedDate: files.upload.lastModifiedDate
+      };
+      res.end(JSON.stringify(data));
       // res.end(util.inspect({ fields: fields, files: files }));
     });
 
