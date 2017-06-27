@@ -2,7 +2,6 @@ const formidable = require('formidable'),
   http = require('http'),
   util = require('util'),
   fs = require('fs'),
-  md5 = require('md5'),
   UPLOAD = {
     DIR: './upload/',
     PORT: 5678
