@@ -26,8 +26,6 @@ http.createServer(function(req, res) {
       var data;
       res.writeHead(200, { 'content-type': 'text/plain' });
       res.writeHead(200, { "Access-Control-Allow-Origin": "*" });
-      // res.write('received upload:\n\n');
-      console.log(files.upload);
       data = {
         size: files.upload.size,
         path: files.upload.path,
