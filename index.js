@@ -2,6 +2,7 @@ const formidable = require('formidable'),
   http = require('http'),
   util = require('util'),
   fs = require('fs'),
+  md5 = require('md5'),
   UPLOAD = {
     DIR: './upload/',
     PORT: 5678
@@ -18,19 +19,25 @@ fs.readdir(UPLOAD.DIR, function(err, files) {
 });
 http.createServer(function(req, res) {
   if (req.url == '/upload' && req.method.toLowerCase() == 'post') {
-    // parse a file upload
     var form = new formidable.IncomingForm();
     form.uploadDir = UPLOAD.DIR;
+    form.keepExtensions = true;
 
     form.parse(req, function(err, fields, files) {
-      var data;
+      if (err) {
+        console.log(err);
+      }
+      console.log(files.img);
       res.writeHead(200, { 'content-type': 'text/plain' });
       res.writeHead(200, { "Access-Control-Allow-Origin": "*" });
-      data = files.upload;
-
-        res.end(util.inspect({ fields: fields, files: files }));
+      // res.end(util.inspect());
+      res.end(JSON.stringify({
+        size: files.img.size,
+        path: files.img.path,
+        name: files.img.name,
+        type: files.img.type,
+      }));
     });
-
     return;
   }
 
