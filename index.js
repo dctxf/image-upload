@@ -27,13 +27,8 @@ http.createServer(function(req, res) {
       res.writeHead(200, { 'content-type': 'text/plain' });
       res.writeHead(200, { "Access-Control-Allow-Origin": "*" });
       data = files.upload;
-      try {
-        res.end(JSON.stringify(data));
-      } catch (e) {
-        res.end(e);
-      }
 
-      // res.end(util.inspect({ fields: fields, files: files }));
+        res.end(util.inspect({ fields: fields, files: files }));
     });
 
     return;
