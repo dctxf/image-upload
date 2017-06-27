@@ -34,7 +34,12 @@ http.createServer(function(req, res) {
         hash: files.upload.hash,
         lastModifiedDate: files.upload.lastModifiedDate
       };
-      res.end(JSON.stringify(data));
+      try {
+        res.end(JSON.stringify(data));
+      } catch (e) {
+        res.end(e);
+      }
+
       // res.end(util.inspect({ fields: fields, files: files }));
     });
 
